@@ -3,7 +3,9 @@ import React from 'react'
 interface Props {
     type: string; // type of board 
     size: number; // size of the square
-    //state: string[]; // state as a list of peices 
+    light: string;
+    dark: string;
+    board: string[]; // state as a list of peices 
 }
 
 
@@ -13,23 +15,39 @@ interface Props {
 
 
 
-export const ChessBoard: React.FC<Props> = ({ size }) => {
+export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
 
-    let isOdd = true; //variable used to see if the square is even or odd 
     let row = 8;
     let col = 8;
 
-    function getColor():string {
-        if(isOdd){
-            isOdd = false;
-            return "#eeeed2"
+    function getColor(r:number, c:number) {
+        if (r % 2 !== 0) {
+            if (c % 2 !== 0) {
+                return light;
+            }
+            return dark;
+        } else {
+            if (c % 2 !== 0) {
+                return dark;
+            }
+            return light;
         }
-        isOdd = true;
-        return "#769656";
     }
 
-    const DARK_COLOR = "#769656";
-    const LIGHT_COLOR = "#eeeed2";
+
+    function getImage():string{
+        if(board[index] !== " "){
+            index++; 
+            return "/assets/" + board[index - 1] + ".svg";
+        }
+        index++
+        return " ";
+    }
+
+
+    let index = 0; 
+
+    
 
 
     return (
@@ -40,12 +58,14 @@ export const ChessBoard: React.FC<Props> = ({ size }) => {
                         {[...Array(col)].map((_, c) => (
                             <td
                                 style={{
-                                    backgroundColor: getColor(),
+                                    backgroundColor: getColor(r,c),
                                     height: size,
                                     width: size,
                                 }}
                                 key={c}
                             >
+                                {<img src={getImage()} alt=""></img>}
+                                
                             </td>
                         ))}
                     </tr>
