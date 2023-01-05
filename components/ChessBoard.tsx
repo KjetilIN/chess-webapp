@@ -1,11 +1,19 @@
 import React from 'react'
 
+
+// This is the interface of a chess engine
+interface chessEngine{
+    getEval(board: string[]): number; // Gets the evaluation of the position, based on the state of the board. 
+    getBestMove(board: string[]): string[]; // Get the best move based on the current state of the board. 
+}
+
 interface Props {
     type: string; // type of board 
     size: number; // size of the square
-    light: string;
-    dark: string;
+    light?: string; // light color of the square
+    dark?: string; // datk color of the suare 
     board: string[]; // state as a list of peices 
+    chessEngine?: chessEngine;
 }
 
 
@@ -16,36 +24,41 @@ interface Props {
 
 
 export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
-
-    let row = 8;
-    let col = 8;
+    let index = 0; //index of the square
+    let isSelected = false; // is selected 
+    let avalibleMoves = []; // list of moves to pick from
 
     function getColor(r:number, c:number) {
         if (r % 2 !== 0) {
             if (c % 2 !== 0) {
-                return light;
+                return light !== undefined ? light : "white";
             }
-            return dark;
+            return dark !== undefined ? dark : "gray";
         } else {
             if (c % 2 !== 0) {
-                return dark;
+                return dark !== undefined ? dark : "gray";
             }
-            return light;
+            return light !== undefined ? light : "white";
         }
     }
 
 
-    function getImage():string{
-        if(board[index] !== " "){
-            index++; 
-            return "/assets/" + board[index - 1] + ".svg";
+    function getImage(): JSX.Element | null{
+        if(board[index] !== " "){ 
+            return (<img src={"/assets/" + board[index++] +".svg"} id={String(index)} alt=""></img>);
         }
         index++
-        return " ";
+        return <img src={"/assets/" + board[index] +".svg"} id={String(index)} alt="" style={{opacity: 0}}></img>;
     }
 
+    function handleClick(e: any):void{
+        let {id, value} = e.target;
+        console.log(id);
+        console.log(value);
 
-    let index = 0; 
+    }
+
+    
 
     
 
@@ -53,9 +66,9 @@ export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
     return (
         <table className="border-collapse ">
             <tbody>
-                {[...Array(row)].map((_, r) => (
+                {[...Array(8)].map((_, r) => (
                     <tr key={r}>
-                        {[...Array(col)].map((_, c) => (
+                        {[...Array(8)].map((_, c) => (
                             <td
                                 style={{
                                     backgroundColor: getColor(r,c),
@@ -63,9 +76,9 @@ export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
                                     width: size,
                                 }}
                                 key={c}
+                                onClick={e => handleClick(e)}
                             >
-                                {<img src={getImage()} alt=""></img>}
-                                
+                                {getImage()}
                             </td>
                         ))}
                     </tr>
