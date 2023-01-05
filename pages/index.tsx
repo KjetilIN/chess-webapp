@@ -1,10 +1,49 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { EngineList } from '../components/EngineList'
 import NavBar from '../components/NavBar'
 import { FlexCenter } from '../containers/FlexCenter'
 
 
 export default function Home() {
+
+  interface Engine {
+    name: string;
+    version: string;
+    deciption: string;
+    link: string;
+  }
+
+  const listOfEnginesData = [
+    {
+      name: "No engine",
+      version: "v.0.1",
+      deciption: "Play chess with yourself",
+      link: "/no-engine"
+    },
+    {
+      name: "Only Bad Moves",
+      version: "v.0.1",
+      deciption: "Only play bad moves",
+      link: "/no-engine"
+    },
+    {
+      name: "Advance",
+      version: "v.0.1",
+      deciption: "Rewards forward moves",
+      link: "/no-engine"
+    },
+    {
+      name: "Woaw this bad",
+      version: "v.0.1",
+      deciption: "Such a bad engine smh",
+      link: "/no-engine"
+    }
+  ]
+
+
+
+
   return (
     <>
       <Head>
@@ -31,6 +70,11 @@ export default function Home() {
             <p>"These people have no clue how to make a good chess engine."</p>
             <h5 className='mt-2'>Bill Gates</h5>
           </blockquote>
+
+
+          <EngineList listOfEngine={listOfEnginesData}/>
+
+
 
         </div>
 
