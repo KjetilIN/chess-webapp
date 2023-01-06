@@ -14,3 +14,18 @@ npm run dev
 # or
 yarn dev
 ```
+
+## To Do
+
+- Components 
+    - ChessBoard
+    - EvalBar
+    - Move List
+- Figure out file structure (components vs chess engine files)
+- Fix profile badge
+- Rewrite the main page
+- Domain name
+- Fix readme for docs
+- Testing with jest (?)
+- Firebase hosting 
+    - Setup GitHub Workflow
