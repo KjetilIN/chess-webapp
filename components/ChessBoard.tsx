@@ -26,7 +26,6 @@ interface Props {
 export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
     light = light ? light : "white"
     dark = dark ? dark : "gray"
-    let index = 0; //index of the square
     let isSelected = false; // is selected 
     let avalibleMoves = []; // list of moves to pick from
 
@@ -40,47 +39,32 @@ export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
     }
 
 
-    function getImage(): JSX.Element | null{
-        if(board[index] !== " "){ 
-            return (<img src={"/assets/" + board[index++] +".svg"} id={String(index)} alt=""></img>);
-        }
-        index++
-        return <img src={"/assets/" + board[index] +".svg"} id={String(index)} alt="" style={{opacity: 0}}></img>;
+    function getImage(piece:string, index:number): JSX.Element {
+        return (<img src={"/assets/" + piece +".svg"} id={String(index)} alt=""></img>);
     }
 
-    function handleClick(e: any):void{
-        let {id, value} = e.target;
-        console.log(id);
-        console.log(value);
-
+    function handleClick(e: any, piece:string, index:number):void{
+        console.log(piece)
+        console.log(index)
     }
 
-    
-
-    
-
+    const squares = [...Array(64)].map((piece, index) => 
+        <div 
+        key={index}
+        onClick={(e) => handleClick(e, piece, index)}
+        style={{
+            backgroundColor: getColor(index),
+            height: size,
+            width: size,
+        }}
+        >
+            {piece && getImage(piece, index)}       
+        </div>
+    )
 
     return (
-        <table className="border-collapse ">
-            <tbody>
-                {[...Array(8)].map((_, r) => (
-                    <tr key={r}>
-                        {[...Array(8)].map((_, c) => (
-                            <td
-                                style={{
-                                    backgroundColor: getColor(r,c),
-                                    height: size,
-                                    width: size,
-                                }}
-                                key={c}
-                                onClick={e => handleClick(e)}
-                            >
-                                {getImage()}
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <div className='grid grid-cols-8'>
+            {squares}
+        </div> 
     )
 }
