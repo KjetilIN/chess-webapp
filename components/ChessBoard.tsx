@@ -24,22 +24,19 @@ interface Props {
 
 
 export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
+    light = light ? light : "white"
+    dark = dark ? dark : "gray"
     let index = 0; //index of the square
     let isSelected = false; // is selected 
     let avalibleMoves = []; // list of moves to pick from
 
-    function getColor(r:number, c:number) {
-        if (r % 2 !== 0) {
-            if (c % 2 !== 0) {
-                return light !== undefined ? light : "white";
-            }
-            return dark !== undefined ? dark : "gray";
-        } else {
-            if (c % 2 !== 0) {
-                return dark !== undefined ? dark : "gray";
-            }
-            return light !== undefined ? light : "white";
-        }
+    // Given an index of the sqaure (0 -> 63) calculate x and y coordinate
+    // For white squares, the x and y coordinate are either both odd or both even
+    // For black squares, one coordinate is odd, while the other is even
+    function getColor(index: number) : string {
+        const x = index % 8
+        const y = Math.floor(index / 8)
+        return (x % 2 === y % 2) ? light : dark
     }
 
 
