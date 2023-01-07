@@ -12,7 +12,7 @@ interface Props {
     size: number; // size of the square
     light?: string; // light color of the square
     dark?: string; // datk color of the suare 
-    board: string[]; // state as a list of peices 
+    board: (string|null)[]; // state as a list of peices 
     chessEngine?: chessEngine;
 }
 
