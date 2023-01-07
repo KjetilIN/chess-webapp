@@ -4,13 +4,13 @@ import { ChessBoard } from '../components/ChessBoard';
 const noengine = () => {
 
   let [board, setBoard] = useState([
-    "br", "bh", "bb", "bq", "bk", "bb", "bh", "br",
-    "bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    "wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp",
-    "wr", "wh", "wb", "wq", "wk", "wb", "wh", "wr"])
+    "r", "k", "b", "q", "k", "b", "k", "r",
+    "p", "p", "p", "p", "p", "p", "p", "p",
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null, null, null,
+    "P", "P", "P", "P", "P", "P", "P", "P",
+    "R", "K", "B", "Q", "K", "B", "K", "R"])
 
   const DARK_COLOR = "#769656";
   const LIGHT_COLOR = "#eeeed2";
