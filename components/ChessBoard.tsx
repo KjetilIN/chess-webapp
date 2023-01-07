@@ -10,8 +10,8 @@ interface chessEngine{
 interface Props {
     type: string; // type of board 
     size: number; // size of the square
-    light?: string; // light color of the square
-    dark?: string; // datk color of the suare 
+    light: string; // light color of the square
+    dark: string; // datk color of the suare 
     board: (string|null)[]; // state as a list of peices 
     chessEngine?: chessEngine;
 }
@@ -43,12 +43,12 @@ export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
         return (<img src={"/assets/" + piece +".svg"} id={String(index)} alt=""></img>);
     }
 
-    function handleClick(e: any, piece:string, index:number):void{
+    function handleClick(e: any, piece:string|null, index:number):void{
         console.log(piece)
         console.log(index)
     }
 
-    const squares = [...Array(64)].map((piece, index) => 
+    const squares = board.map((piece, index) => 
         <div 
         key={index}
         onClick={(e) => handleClick(e, piece, index)}
