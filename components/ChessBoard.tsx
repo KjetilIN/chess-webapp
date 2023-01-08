@@ -17,17 +17,9 @@ interface Props {
 }
 
 
-
-
-
-
-
-
 export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
     light = light ? light : "white"
     dark = dark ? dark : "gray"
-    let isSelected = false; // is selected 
-    let avalibleMoves = []; // list of moves to pick from
 
     // Given an index of the sqaure (0 -> 63) calculate x and y coordinate
     // For white squares, the x and y coordinate are either both odd or both even
