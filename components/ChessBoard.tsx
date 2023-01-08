@@ -10,8 +10,8 @@ interface chessEngine{
 interface Props {
     type: string; // type of board 
     size: number; // size of the square
-    light: string; // light color of the square
-    dark: string; // datk color of the suare 
+    light?: string; // light color of the square
+    dark?: string; // datk color of the suare 
     board: (string|null)[]; // state as a list of peices 
     chessEngine?: chessEngine;
 }
@@ -32,7 +32,7 @@ export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
     // Given an index of the sqaure (0 -> 63) calculate x and y coordinate
     // For white squares, the x and y coordinate are either both odd or both even
     // For black squares, one coordinate is odd, while the other is even
-    function getColor(index: number) : string {
+    function getColor(index: number) : any {
         const x = index % 8
         const y = Math.floor(index / 8)
         return (x % 2 === y % 2) ? light : dark
