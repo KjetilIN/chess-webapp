@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 
 
 // This is the interface of a chess engine
@@ -33,14 +34,14 @@ export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
 
     // This function is coniditionally called, meaning no null check for piece is necessary
     function getImage(piece:string, index:number): JSX.Element {
-        return (<img src={"/assets/" + piece +".svg"} id={String(index)} alt=""></img>);
+        return (<Image src={"/assets/" + piece +".svg"} id={String(index)} alt="" width={size} height={size}/>);
     }
 
-    // Change this to make the chessboard do stuff
-    function handleClick(e: any, piece:string|null, index:number):void{
-        console.log(piece)
-        console.log(index)
-    }
+// Change this to make the chessboard do stuff
+function handleClick(e: any, piece:string|null, index:number):void{
+    console.log(piece)
+    console.log(index)
+}
 
     // 64 divs with index, and potentially a piece
     const squares = board.map((piece, index) => 

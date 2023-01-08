@@ -1,19 +1,22 @@
 import React from 'react'
+import Image from 'next/image';
 
 
 interface Profile {
     name: string;
     profession: string;
     profilepic: string;
+    width: number;
+    height: number;
 }
 
-export const ProfileCard: React.FC<Profile> = ({ name, profession, profilepic }) => {
+export const ProfileCard: React.FC<Profile> = ({ name, profession, profilepic, width, height}) => {
     return (
 
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 pt-4">
 
             <div className="flex flex-col items-center pb-10">
-                <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={profilepic} alt={name} />
+                <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src={profilepic} alt={name} width={width} height={height}/>
                 <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{name}</h5>
                 <span className="text-sm text-gray-500 dark:text-gray-400">{profession}</span>
                 <div className="flex mt-4 space-x-3 md:mt-6">

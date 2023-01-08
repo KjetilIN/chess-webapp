@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ChessBoard } from '../components/ChessBoard';
 import { Evalbar } from '../components/Evalbar';
 
-const noengine = () => {
+export const NoEngine: React.FC = () => {
 
   let [board, setBoard] = useState([
     "r", "n", "b", "q", "k", "b", "n", "r",
@@ -21,6 +21,7 @@ const noengine = () => {
     <div>
       <div className='flex justify-center mt-20 gap-3'>
         <Evalbar evaluation={0.2}/>
+        <ChessBoard board={board} size={70} type="No Engine"/>
         
       </div>
       
@@ -29,4 +30,4 @@ const noengine = () => {
   )
 }
 
-export default noengine; 
+export default NoEngine; 
