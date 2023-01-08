@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ChessBoard } from '../components/ChessBoard';
+import { Evalbar } from '../components/Evalbar';
 
 const noengine = () => {
 
@@ -18,9 +19,11 @@ const noengine = () => {
 
   return (
     <div>
-      <div className='flex justify-center mt-20'>
-        <ChessBoard size={70} type="default" dark={DARK_COLOR} light={LIGHT_COLOR} board={board} />
+      <div className='flex justify-center mt-20 gap-3'>
+        <Evalbar evaluation={0.2}/>
+        
       </div>
+      
 
     </div>
   )
