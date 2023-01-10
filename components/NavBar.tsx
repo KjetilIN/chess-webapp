@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { ReactFragment } from 'react'
+import Image from 'next/image';
 
 
 
@@ -8,7 +9,7 @@ const NavBar: React.FC= () => {
     <nav className="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <Link href="/" className="flex items-center">
-            <img src="logo.png" className="h-6 mr-3 sm:h-10" alt="Logo" />
+            <Image src="/logo.png" className="h-6 mr-3 sm:h-10" alt="Logo" width={32} height={32} />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Bad Chess Engine INC.</span>
         </Link>
         <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">

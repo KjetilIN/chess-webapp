@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 
 
 // This is the interface of a chess engine
@@ -12,78 +13,54 @@ interface Props {
     size: number; // size of the square
     light?: string; // light color of the square
     dark?: string; // datk color of the suare 
-    board: string[]; // state as a list of peices 
+    board: (string|null)[]; // state as a list of peices 
     chessEngine?: chessEngine;
 }
 
 
-
-
-
-
-
-
 export const ChessBoard: React.FC<Props> = ({ size , light, dark, board}) => {
-    let index = 0; //index of the square
-    let isSelected = false; // is selected 
-    let avalibleMoves = []; // list of moves to pick from
+    light = light ? light : "white"
+    dark = dark ? dark : "gray"
 
-    function getColor(r:number, c:number) {
-        if (r % 2 !== 0) {
-            if (c % 2 !== 0) {
-                return light !== undefined ? light : "white";
-            }
-            return dark !== undefined ? dark : "gray";
-        } else {
-            if (c % 2 !== 0) {
-                return dark !== undefined ? dark : "gray";
-            }
-            return light !== undefined ? light : "white";
-        }
+    // Given an index of the sqaure (0 -> 63) calculate x and y coordinate
+    // For white squares, the x and y coordinate are either both odd or both even
+    // For black squares, one coordinate is odd, while the other is even
+    function getColor(index: number) : any {
+        const x = index % 8
+        const y = Math.floor(index / 8)
+        return (x % 2 === y % 2) ? light : dark
     }
 
 
-    function getImage(): JSX.Element | null{
-        if(board[index] !== " "){ 
-            return (<img src={"/assets/" + board[index++] +".svg"} id={String(index)} alt=""></img>);
-        }
-        index++
-        return <img src={"/assets/" + board[index] +".svg"} id={String(index)} alt="" style={{opacity: 0}}></img>;
+    // This function is coniditionally called, meaning no null check for piece is necessary
+    function getImage(piece:string, index:number): JSX.Element {
+        return (<Image src={"/assets/" + piece +".svg"} id={String(index)} alt="" width={size} height={size}/>);
     }
 
-    function handleClick(e: any):void{
-        let {id, value} = e.target;
-        console.log(id);
-        console.log(value);
+// Change this to make the chessboard do stuff
+function handleClick(e: any, piece:string|null, index:number):void{
+    console.log(piece)
+    console.log(index)
+}
 
-    }
-
-    
-
-    
-
+    // 64 divs with index, and potentially a piece
+    const squares = board.map((piece, index) => 
+        <div 
+        key={index}
+        onClick={(e) => handleClick(e, piece, index)}
+        style={{
+            backgroundColor: getColor(index),
+            height: size,
+            width: size,
+        }}
+        >
+            {piece && getImage(piece, index)}       
+        </div>
+    )
 
     return (
-        <table className="border-collapse ">
-            <tbody>
-                {[...Array(8)].map((_, r) => (
-                    <tr key={r}>
-                        {[...Array(8)].map((_, c) => (
-                            <td
-                                style={{
-                                    backgroundColor: getColor(r,c),
-                                    height: size,
-                                    width: size,
-                                }}
-                                key={c}
-                                onClick={e => handleClick(e)}
-                            >
-                                {getImage()}
-                            </td>
-                        ))}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <div className='grid grid-cols-8'>
+            {squares}
+        </div> 
     )
 }

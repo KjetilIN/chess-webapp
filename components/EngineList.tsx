@@ -44,7 +44,8 @@ export const EngineList: React.FC<Props> = ({ listOfEngine }) => {
 
                     {listOfEngine?.map((engine, _index) => {
 
-                        return (<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        return (
+                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 " key={engine.name}>
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {engine.name}
                             </th>

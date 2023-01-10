@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { ChessBoard } from '../components/ChessBoard';
+import { Evalbar } from '../components/Evalbar';
 
-const noengine = () => {
+export const NoEngine: React.FC = () => {
 
   let [board, setBoard] = useState([
-    "br", "bh", "bb", "bq", "bk", "bb", "bh", "br",
-    "bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-    "wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp",
-    "wr", "wh", "wb", "wq", "wk", "wb", "wh", "wr"])
+    "r", "n", "b", "q", "k", "b", "n", "r",
+    "p", "p", "p", "p", "p", "p", "p", "p",
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null, null, null,
+    "P", "P", "P", "P", "P", "P", "P", "P",
+    "R", "N", "B", "Q", "K", "B", "N", "R"])
 
   const DARK_COLOR = "#769656";
   const LIGHT_COLOR = "#eeeed2";
@@ -18,12 +19,15 @@ const noengine = () => {
 
   return (
     <div>
-      <div className='flex justify-center mt-20'>
-        <ChessBoard size={70} type="default" dark={DARK_COLOR} light={LIGHT_COLOR} board={board} />
+      <div className='flex justify-center mt-20 gap-3'>
+        <Evalbar evaluation={0.2}/>
+        <ChessBoard board={board} size={70} type="No Engine"/>
+        
       </div>
+      
 
     </div>
   )
 }
 
-export default noengine; 
+export default NoEngine; 
