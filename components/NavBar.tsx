@@ -46,7 +46,7 @@ const NavBar: React.FC= () => {
       </div>
 
       {/** Dropdown menu script from flowbite */}
-      <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></script>
+      <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js" defer></script>
 
     </nav>
 
