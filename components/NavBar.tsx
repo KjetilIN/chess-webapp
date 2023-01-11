@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { ReactFragment } from 'react'
 import Image from 'next/image';
+import Script from 'next/script';
 
 
 
@@ -46,7 +47,7 @@ const NavBar: React.FC= () => {
       </div>
 
       {/** Dropdown menu script from flowbite */}
-      <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></script>
+      <Script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></Script>
 
     </nav>
 
